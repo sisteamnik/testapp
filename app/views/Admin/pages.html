@@ -1,0 +1,22 @@
+{{set . "title" "Home"}}
+{{template "admin_header.html" .}}
+<ul>
+{{range .pages}}
+<li><a href="/admin/editpage?slug={{.Slug}}">{{.Title}}</a>{{.}}
+{{end}}
+
+</ul>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
+
+
+
+

@@ -1,0 +1,63 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+  <div class="non-semantic-protector"> 
+   <h2 class="ribbon" id="description"><strong class="ribbon-content">Цена - от 10 тысяч за сотку. Рассрочка до 1,5 лет!</strong></h2>
+</div>
+    <center>
+        <h2><strong>Коттеджный посёлок {{.village.Name}}</strong></h2>
+    </center>
+  <div class="row">
+      <div class="c-33">
+{{template "left-side-menu.html" .}}
+      </div>
+      <div class="c-66 text-justify">
+        {{.village.Description|raw}}
+      </div>
+  </div>
+  <!--<div class="non-semantic-protector"> 
+   <h2 class="ribbon" id="description"><strong class="ribbon-content">Описание</strong></h2>
+</div>
+  {{str .village.LongText|raw}}
+<div class="non-semantic-protector"> 
+   <h2 class="ribbon" id="photos"><strong class="ribbon-content">Фотографии</strong></h2>
+</div>
+<div class="non-semantic-protector"> 
+   <h2 class="ribbon" id="project"><strong class="ribbon-content">Проект генерального плана</strong></h2>
+</div>
+  <div>
+    <img src="{{imgurl .village.PhotoId "_900x600"}}" class="img-responsive">
+  </div>
+
+<map name="myMap" id="myMap">
+{{.village.SchemaData|raw}}
+</map>-->
+<script src="/public/js/imm.js"></script>
+<script>
+$("#myMap area").each(function(index){
+	this.href = "#"
+})
+function mapster() {
+    $('img').mapster( { 
+    fillColor: 'f4ff75',
+    stroke: true, 
+    singleSelect: true,
+    mapKey:"alt",
+    fillOpacity: 0.5,
+    showToolTip: true,
+    fill:true,
+    toolTipContainer:'<div></div>',
+    areas: [{
+        key:"free",
+        toolTip: "Don't mess with Texas",
+    },
+    {
+        key:"nofree",
+        toolTip: "Closed",
+    }]
+    }); 
+}
+mapster()
+$(window).on("resize",mapster)
+	
+</script>
+{{template "footer.html" .}}

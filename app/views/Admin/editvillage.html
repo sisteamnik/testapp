@@ -1,0 +1,51 @@
+{{set . "title" "Home"}}
+{{template "admin_header.html" .}}
+
+<form method="post" action="{{if .new_village}}/admin/createvillage{{else}}/admin/updatevillage{{end}}">
+	<input type="hidden" name="village.Id" id="" value="{{.village.Id}}">
+	<input type="text" name="village.Name" id="" placeholder="Name" value="{{.village.Name}}">
+	<input type="text" name="village.Slug" placeholder="Slug" value="{{.village.Slug}}">
+	<textarea name="village.Description" placeholder="Description">{{.village.Description}}</textarea>
+	<textarea name="longtext" placeholder="text">{{str .village.LongText}}</textarea>
+	<input type="text" name="village.Type" value="{{.village.Type}}" placeholder="village.Type">
+	<input type="text" name="village.SchemaData" value="{{.village.SchemaData}}" id="" placeholder="SchemaData">
+	<input type="file" id="img-schema">
+	<input type="hidden" name="village.SchemaId" id="SchemaId" value="{{.village.SchemaId}}">
+	<input type="file" id="img-photo">
+	<input type="hidden" name="village.PhotoId" id="PhotoId" value="{{.village.PhotoId}}">
+	<button>Save</button>
+</form>
+
+<img src="{{.villageSchemaUrl}}" id="schemaprev" title="schema" alt="schema">
+<img src="{{.villagePhotoUrl}}" id="photoprev" title="photo" alt="photo">
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{if ne .new_village true}}
+<script>
+	var imgChange = $("#img-schema")
+	imgChange.change(function(){
+		uploadImg(imgChange[0].files[0],"","", function(image){
+			$("#SchemaId").val(image.Id)
+			$("#schemaprev")[0].src = ImgUrl(image.Name)
+		})
+	})
+	var photoChange = $("#img-photo")
+	photoChange.change(function(){
+		uploadImg(photoChange[0].files[0],"","", function(image){
+			$("#PhotoId").val(image.Id)
+			$("#photoprev")[0].src = ImgUrl(image.Name)
+		})
+	})
+</script>
+{{end}}
+
+{{template "admin_footer.html" .}}
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{{.title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    {{range .moreStyles}}
+      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
+    {{range .moreScripts}}
+      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+    {{end}}
+  </head>
+  <body>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="/admin/index">Home</a></li>
+  <li><a href="/admin/pages">Pages</a></li>
+  <li><a href="/admin/menu">Menu</a></li>
+  <li><a href="/admin/villages">Villages</a></li>
+</ul>
+<script>
+function uploadImg(img, name, description, callback) {
+  var fd = new FormData()
+  fd.append("imgdata",img)
+  fd.append("name",name)
+  fd.append("descr",description)
+  var request = new XMLHttpRequest();
+  request.open("POST", "/admin/upload");
+  request.send(fd);
+  request.onload = function() {
+    var image = JSON.parse(request.response)
+    callback(image)
+  }
+}
+function ImgUrl(name) {
+  return "/public/img/"+name[0]+"/"+name[1]+"/"+name[2]+"/"+name+"_100x100.jpg"
+}
+</script>

@@ -1,0 +1,51 @@
+  </div>
+  <footer>
+  <div class="c-50">© Агентство недвижимости «Импульс-К», 2004-2014
+земельные участки, квартиры, межевание</div>
+  <div class="c-50 text-right">
+    г. Смоленск, ул. Тенишевой, д. 4, 1-ый подъезд, 2-ой этаж
+тел.: (4812) 38-28-77
+</div>
+  </footer>
+  <script>
+  window.onload = function() {
+  	setTimeout(l, 1500)
+  	
+  }
+  function l() {
+  	loadimg("/public/img/bg18.jpg", load_bg)
+  }
+  function load_bg() {
+  	var i = document.querySelectorAll(".background")[0]
+  	i.style.backgroundImage = "url('/public/img/bg18.jpg')"
+  }
+  function loadimg(src, callback) {
+  	var img = new Image();
+  	img.src = src;
+  	img.onload = callback
+  }
+  </script>
+  {{if eq .path "/"}}
+  <script src="/public/js/yamaps.js"></script>{{end}}
+  {{if eq .path "/kontakty"}}
+<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script>
+var myMap;
+ymaps.ready(init);
+function init () {
+myMap = new ymaps.Map("map", {
+          center: [54.776529, 32.052662],
+          zoom: 16
+      })
+  var myPlacemark = new ymaps.Placemark([54.776529, 32.052662], {}, {
+          iconImageHref: '/public/img/map-point.png',
+          iconImageSize: [64, 64],
+          iconImageOffset: [-24, -48]
+      });
+myMap.geoObjects.add(myPlacemark);
+}
+
+</script>
+  {{end}}
+</body>
+</html>

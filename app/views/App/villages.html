@@ -1,0 +1,11 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+<div class="row">
+{{range .villages}}
+  <div class="c-33 well ">
+  	<a href="/{{.Slug}}"><h2>{{.Name}}</h2></a>
+  	<img src="{{imgurl .SchemaId "_300x300"}}" class="img-responsive">
+  </div>
+{{end}}
+</div>
+{{template "footer.html" .}}

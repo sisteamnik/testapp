@@ -1,0 +1,19 @@
+{{set . "title" "Home"}}
+{{template "admin_header.html" .}}
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+  <a href="/admin/editvillage">Create village</a>
+  <ul>
+  	{{range .villages}}
+<li><a href="/admin/editvillage?slug={{.Slug}}">{{.Name}}</a>
+{{end}}
+  </ul>
+  
+</div>
+
+{{template "footer.html" .}}

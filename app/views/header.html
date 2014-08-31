@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>{{.title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      @font-face {
+        font-family: 'Ruslan Display';
+        font-style: normal;
+        font-weight: 400;
+        src: url(/public/font/IZH.woff);
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/public/css/norm.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    {{range .moreStyles}}
+      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
+    {{range .moreScripts}}
+      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+    {{end}}
+  </head>
+  <body>
+  <div class="background"></div>
+  <header>
+    <div class="logo">
+      <img src="/public/img/logos.png">
+    </div>
+    <div class="header-text">
+      <h2 style=''>Земельные участки в Смоленском районе</h2>
+    </div>
+  </header>
+  <ul class="nav">
+    <li><a href="/">Главная</a></li>
+    <li><a href="/poselki">Посёлки</a>
+      <ul>{{range $k,$v := .villages_meta}}
+        <li><a href="/{{$v}}">{{$k}}</a></li>{{end}}
+      </ul>
+    </li>
+    <li><a href="/kontakty">Контакты</a></li>
+    <li><a href="/">О проекте</a></li>
+  </ul>
+  <div class="content">

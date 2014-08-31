@@ -1,0 +1,23 @@
+{{set . "title" "Home"}}
+{{template "admin_header.html" .}}
+
+<form action="{{if .new_page}}/admin/createpage{{else}}/admin/updatepage{{end}}">
+	<input type="hidden" name="page.Id" id="" value="{{.page.Id}}">
+	<input type="text" name="page.Title" id="" placeholder="Title" value="{{.page.Title}}">
+	<input type="text" name="page.Slug" placeholder="Slug" value="{{.page.Slug}}">
+	<input type="text" name="page.Description" placeholder="Description" value="{{.page.Description}}">
+	<textarea name="page.Body" id="" cols="30" rows="10" placeholder="body">{{.page.Body}}</textarea>
+	<button>Save</button>
+</form>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
+
+
