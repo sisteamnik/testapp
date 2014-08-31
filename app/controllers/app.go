@@ -73,6 +73,10 @@ func metaVillages() map[string]string {
 	return result
 }
 
+func (c App) Stat() revel.Result {
+	return c.RenderJson("ok")
+}
+
 func TemplateAddInfoFilter(c *revel.Controller, fc []revel.Filter) {
 	c.RenderArgs["villages_meta"] = metaVillages()
 	if c.Request.URL.Path == "" {
